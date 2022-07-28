@@ -1,0 +1,29 @@
+<h2>Por capital</h2>
+<hr>
+
+
+<div class="row">
+    <div class="col">
+        <!-- aqui donde tengo el componente voy a recibir en evento que estoy emitiendo
+          lo voy a recibir aqui lo escucho como se escucha cualquier evento con los ()
+        este buscar es que se encuentra en el .ts de por pais componet -->
+        <app-pais-input
+            (onEnter)="buscar($event)" 
+            placeholder = "buscar capital ..."
+            >
+        </app-pais-input>
+    </div>
+</div>
+
+<hr>
+<div 
+    *ngIf="hayError"
+    class="alert alert-danger">
+    No se encontro nada con el termino {{termino}}
+</div>
+
+<div *ngIf="paises.length > 0" class="row">
+    <div class="col">
+       <app-pais-tabla [paises]="paises"></app-pais-tabla>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div>
+
+</div>
+<h2>Por pais</h2>
+<hr>
+
+
+<div class="row">
+    <div class="col">
+        <!-- aqui donde tengo el componente voy a recibir en evento que estoy emitiendo
+          lo voy a recibir aqui lo escucho como se escucha cualquier evento con los ()
+        este buscar es que se encuentra en el .ts de por pais componet -->
+        <app-pais-input
+            (onEnter)="buscar($event)" 
+            (onDebounce)="sugerencias($event)"
+            placeholder = "buscar pais ...">
+        </app-pais-input>
+    </div>
+</div>
+
+<ul  *ngIf="mostrarSugerencias"
+    class="list-group">
+    <li  *ngFor="let pais of paisesSugeridos"
+        class="list-group-item list-group-item-action">
+       <a 
+          [routerLink]="['/pais', pais.cca2]">
+           {{pais.name.official}}
+        </a>
+      
+    </li>
+    <li class="list-group-item list-group-item-action"
+    (click)="buscar(termino)">
+       <a>
+          buscar "{{termino}}"
+        </a>
+       
+      
+    </li>
+</ul>
+
+<hr>
+
+<div 
+    *ngIf="hayError"
+    class="alert alert-danger">
+    No se encontro nada con el termino {{termino}}
+</div>
+
+<div *ngIf="paises.length > 0" class="row">
+    <div class="col">
+       <app-pais-tabla [paises]="paises"></app-pais-tabla>
+    </div>
+</div>

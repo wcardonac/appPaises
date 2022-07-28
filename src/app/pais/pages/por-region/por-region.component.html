@@ -1,0 +1,31 @@
+
+<h3>Buscar por regiones <small>{{regionActiva}}</small></h3>
+<hr>
+
+<h5>Selecciones la region</h5>
+<!-- [class.btn-primary]="region === regionActiva" -->
+<!-- [ngClass]="{
+    'btn-primary': regionActiva === region,
+    'btn-outline-primary': regionActiva !== region
+   }" -->
+
+   <!-- otra forma de poner clases de manera condicinal
+   es de la siguiente manera, recordar que estamos viendo como 
+   agregar estilos de css de manera condicinal -->
+<div class="row">
+    <div class="col">
+        <button *ngFor="let region of regiones"
+        [class]="clasecss(region) "
+     
+        (click)="activarRegion(region)">
+            {{region}}
+        </button>
+    </div>
+</div>
+
+<div *ngIf="paises.length > 0" class="row">
+    <div class="col">
+       <app-pais-tabla [paises]="paises"></app-pais-tabla>
+    </div>
+</div>
+
